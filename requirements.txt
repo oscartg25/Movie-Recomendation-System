@@ -1,8 +1,9 @@
 pandas
 numpy
-ast
 scikit-learn
 Fastapi
 uvicorn
 seaborn 
+json
+
 
