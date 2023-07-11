@@ -3,8 +3,9 @@ numpy
 scikit-learn
 Fastapi
 uvicorn
-seaborn 
 openpyxl==3.0.9
+matplotlib
+matplotlib.pyplot
 
 
 
