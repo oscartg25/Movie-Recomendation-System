@@ -1,4 +1,4 @@
-# Movie-Sistem-Project
+# Movie-System-Project
 
 Este proyecto va contener un sistema de recomendacion en el cual nos arojara las distintas peliculas recomendadas a partir de diferentes aspectos.
 
