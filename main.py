@@ -1,3 +1,4 @@
+import numpy as np
 from fastapi import FastAPI
 import pandas as pd
 from pydantic import BaseModel
@@ -79,3 +80,26 @@ def get_director(nombre_director: str):
         peliculas.append(pelicula)
     
     return {"director": nombre_director, "peliculas": peliculas}
+
+## Sistema de Recomendacion
+
+#creamos una funcion para el sistema de recomendacion
+
+@app.get('/recomendacion/{titulo}')
+def recomendacion(titulo: str):
+    # Obtener las puntuaciones de la película de entrada
+    pelicula_entrada = df_union[df_union['title'] == titulo]
+    if pelicula_entrada.empty:
+        return {"mensaje": f"No se encontró la película '{titulo}'."}
+    puntuaciones_entrada = pelicula_entrada['vote_average'].values
+    
+    # Calcular la similitud de puntuación entre la película de entrada y las demás películas
+    similitud = df_union['vote_average'].apply(lambda x: np.dot(x, puntuaciones_entrada) / (np.linalg.norm(x) * np.linalg.norm(puntuaciones_entrada)))
+    
+    # Ordenar las películas según el puntaje de similitud
+    peliculas_similares = df_union.loc[similitud.argsort()[::-1]]
+    
+    # Seleccionar las 5 películas más similares
+    recomendaciones = peliculas_similares['title'].head(5).tolist()
+    
+    return {"Recomendaciones": recomendaciones}
