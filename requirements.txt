@@ -6,6 +6,6 @@ uvicorn
 openpyxl==3.0.9
 matplotlib
 matplotlib.pyplot
-
+pip
 
 
