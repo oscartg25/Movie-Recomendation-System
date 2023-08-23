@@ -4,8 +4,8 @@ scikit-learn
 Fastapi
 uvicorn
 openpyxl==3.0.9
-matplotlib.pyplot==3.5.3
-pip
+matplotlib==3.5.3
+
 
 
 
